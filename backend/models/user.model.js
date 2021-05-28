@@ -1,4 +1,5 @@
-const { Schema } = require("mongoose");
+const mongoose = require("mongoose");
+
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -8,7 +9,7 @@ const userSchema = new Schema({
         unique:true,
         //weap the white spece at the end of each string
         trim: true,
-        minlength: 3
+        minlength: 2
     },
 },{
     timestamps: true,
