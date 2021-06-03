@@ -11,6 +11,10 @@ const userSchema = new Schema({
         trim: true,
         minlength: 2
     },
+    passwordHash:{
+        type: String,
+        require: true
+    }
 },{
     timestamps: true,
 });
