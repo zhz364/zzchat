@@ -1,6 +1,7 @@
 const router = require('express').Router();
 let User = require('../models/user.model');
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 router.route('/').get((req,res) =>{
     User.find()
@@ -33,12 +34,59 @@ router.route('/add').post(async(req,res) => {
         const newUser = new User({username,passwordHash});
         await newUser.save()
             .then(( )=> res.json("Successfuly Created a new User"))
+        
+        // token setup
+        const token = jwt.sign({
+            user: newUser._id
+        }, process.env.JWT_SECRET);
+
+        // send the token in a http-only cookie
+        res.cookie("token",token, {
+                httpOnly: true,
+        }).send();    
+
+    }catch(err){
+        res.status(400).json('Error: ' + err);
+    }  
+});
+
+// login
+router.route('/login').post(async(req,res) => {
+    try{
+        const {username, password} = req.body;
+        // validate
+        if(!username || !password){
+            return res.status(400).json("Error: "+ "Please enter all required fields")
+        }
+
+        if(password.length < 6){
+            return res.status(400).json("Error: "+ "Please enter a password of at least 6 characters")
+        }
+
+        const existingUser = await User.findOne({username});
+        if (!existingUser){
+            return res.status(401).json("Error: "+ "Wrong username or password")
+        }
+        const passwordCheck = await bcrypt.compare(password,existingUser.passwordHash);
+        if(!passwordCheck){
+            return res.status(401).json("Error: "+ "Wrong username or password")
+        }
+
+        // sign in token 
+        const token = jwt.sign({
+            user: existingUser._id
+        }, process.env.JWT_SECRET);
+
+        res.cookie("token",token, {
+            httpOnly: true,
+        }).send();    
+        console.log("logedin")
     }catch(err){
         res.status(400).json('Error: ' + err);
     }
-    
-    
-     
-})
+});
 
+router.route('/logout').post(async(req,res) => {
+    
+});
 module.exports = router;
