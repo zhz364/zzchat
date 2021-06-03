@@ -43,6 +43,7 @@ router.route('/add').post(async(req,res) => {
         // send the token in a http-only cookie
         res.cookie("token",token, {
                 httpOnly: true,
+                useUnifiedTopology: true
         }).send();    
 
     }catch(err){
@@ -79,6 +80,7 @@ router.route('/login').post(async(req,res) => {
 
         res.cookie("token",token, {
             httpOnly: true,
+            useUnifiedTopology: true
         }).send();    
         console.log("logedin")
     }catch(err){
@@ -86,7 +88,13 @@ router.route('/login').post(async(req,res) => {
     }
 });
 
-router.route('/logout').post(async(req,res) => {
-    
+router.route('/logout').get((req,res) => {
+    res.cookie("token","",{
+        httpOnly:true,
+        expires: new Date(0),
+        useUnifiedTopology: true
+    })
+        .send();
+        console.log(req.body.username+" logout")
 });
 module.exports = router;
