@@ -2,6 +2,7 @@ const router = require('express').Router();
 let User = require('../models/user.model');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const auth = require('../middleware/auth')
 
 router.route('/').get((req,res) =>{
     User.find()
@@ -9,7 +10,7 @@ router.route('/').get((req,res) =>{
         .catch(err => res.status(400).json('Error:' + err));
 });
 
-router.route('/add').post(async(req,res) => {
+router.post('/add',async(req,res) => {
     try{
         const {username, password }= req.body;
         // Validations
@@ -32,20 +33,18 @@ router.route('/add').post(async(req,res) => {
 
         // save user to database
         const newUser = new User({username,passwordHash});
-        await newUser.save()
-            .then(( )=> res.json("Successfuly Created a new User"))
+        const savedUser = await newUser.save();
         
         // token setup
         const token = jwt.sign({
-            user: newUser._id
+            user: savedUser._id
         }, process.env.JWT_SECRET);
-
+        console.log(token)
         // send the token in a http-only cookie
         res.cookie("token",token, {
                 httpOnly: true,
                 useUnifiedTopology: true
         }).send();    
-
     }catch(err){
         res.status(400).json('Error: ' + err);
     }  
