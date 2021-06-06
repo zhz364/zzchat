@@ -10,7 +10,7 @@ router.route('/').get((req,res) =>{
         .catch(err => res.status(400).json('Error:' + err));
 });
 
-router.post('/add',async(req,res) => {
+router.post('/add',auth,async(req,res) => {
     try{
         const {username, password }= req.body;
         // Validations
@@ -39,7 +39,7 @@ router.post('/add',async(req,res) => {
         const token = jwt.sign({
             user: savedUser._id
         }, process.env.JWT_SECRET);
-        console.log(token)
+        // console.log(token)
         // send the token in a http-only cookie
         res.cookie("token",token, {
                 httpOnly: true,
