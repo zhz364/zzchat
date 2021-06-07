@@ -9,6 +9,7 @@ function auth(req,res,next){
         
         req.user = verified.user;
 
+        // Exit auth
         next();
     }catch(err){
         res.status(401).json({errorMessage: "Unauthorized"});

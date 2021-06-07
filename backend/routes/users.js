@@ -10,7 +10,7 @@ router.route('/').get((req,res) =>{
         .catch(err => res.status(400).json('Error:' + err));
 });
 
-router.post('/add',auth,async(req,res) => {
+router.post('/add',async(req,res) => {
     try{
         const {username, password }= req.body;
         // Validations
