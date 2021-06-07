@@ -5,7 +5,7 @@ import Register from "../src/components/auth/Register"
 function Router(){
     return <BrowserRouter>
         <Switch>
-            <Route path="/">
+            <Route exact path="/">
                 <div>Home</div>
             </Route>
             <Route path="/register">
