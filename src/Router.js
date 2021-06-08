@@ -2,6 +2,7 @@ import React from "react";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Register from "../src/components/auth/Register"
 import Navbar from "./components/layout/Navbar";
+import Login from "./components/auth/Login";
 
 function Router(){
     return <BrowserRouter>
@@ -14,7 +15,7 @@ function Router(){
                 <Register />
             </Route>
             <Route path="/login">
-                <div>login</div>
+                <Login />
             </Route>
         </Switch>
     </BrowserRouter>
