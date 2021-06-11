@@ -96,4 +96,19 @@ router.route('/logout').get((req,res) => {
         .send();
         console.log(req.body.username+" logout")
 });
+
+router.get("/loggedIn",(req,res)=>{
+    try{
+        const token = req.cookies.token;
+        if(!token) return res.status(401).jason(false);
+        
+        const verified = jwt.verify(token,process.env.JWT_SECRET);
+        
+        res.send(true)
+    }catch(err){
+        res.json(false);
+    }
+})
+
+
 module.exports = router;
