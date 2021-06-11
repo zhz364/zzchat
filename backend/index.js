@@ -16,7 +16,7 @@ app.use(cors({
 }));
 
 const uri = process.env.ATLAS_URI;
-mongoose.connect(uri,{useNewUrlParser: true, useCreateIndex: true});
+mongoose.connect(uri,{useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true});
 const connection = mongoose.connection;
 connection.once('open',()=>{
     console.log("MongoDB successfully connected");
