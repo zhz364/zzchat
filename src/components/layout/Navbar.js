@@ -14,7 +14,7 @@ function Navbar(){
                     <Link to="/login">Login</Link>
                 </>
         )}
-        {loggedIn === true &&<Link to="/logout">Logout</Link>}
+        {loggedIn === true &&<Link to="/logout">LogOut</Link>}
 
         
 
