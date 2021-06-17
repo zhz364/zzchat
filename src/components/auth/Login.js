@@ -1,10 +1,14 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import axios from "axios";
+import AuthContext from '../../context/AuthContext';
+import { useHistory } from 'react-router-dom';
 
 function Login(){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    const {getLoggedIn} = useContext(AuthContext);
+    const history = useHistory();
     async function login(e){
         e.preventDefault();
         try{
@@ -14,6 +18,8 @@ function Login(){
             }
 
             await axios.post("http://localhost:5000/users/login",loginData);
+            await getLoggedIn();
+            history.push("/")
         }catch(err){
             console.log({errorMessage: "Wrong username or password"});
         }

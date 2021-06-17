@@ -24,7 +24,7 @@ router.post('/add',async(req,res) => {
 
         const existingUser = await User.findOne({username:username})
         if (existingUser){
-            return res.status(400).json("Error: "+ "An account with this User name already exists")
+            return res.status(400).json("Error: "+ "An account with this username already exists")
         }
 
         // hash the password
