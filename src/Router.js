@@ -15,17 +15,24 @@ function Router(){
             <Route exact path="/">
                 <div>Home</div>
             </Route>
+            {
+                loggedIn === false && (<>
+                    <Route path="/register">
+                        <Register />
+                    </Route>
+                    <Route path="/login">
+                        <Login />
+                    </Route>            
+                </>)
+            }
+            {
+                loggedIn === true && (<>
+                    <Route path="/logout">
+                        <Logout />
+                    </Route>
+                </>)
+            }
             
-            <Route path="/register">
-                <Register />
-            </Route>
-            <Route path="/login">
-                <Login />
-            </Route>            
-           
-            <Route path="/logout">
-                <Logout />
-            </Route>)
         </Switch>
     </BrowserRouter>
 };

@@ -8,13 +8,13 @@ function Navbar(){
     console.log(loggedIn)
     return <div>
         <Link to="/">Home</Link>
-        {!loggedIn && (
+        {loggedIn === false && (
                 <>
                     <Link to="/register">Register</Link>
                     <Link to="/login">Login</Link>
                 </>
         )}
-        {loggedIn &&<Link to="/logout">Logout</Link>}
+        {loggedIn === true &&<Link to="/logout">Logout</Link>}
 
         
 
