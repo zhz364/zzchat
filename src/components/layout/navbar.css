@@ -1,0 +1,39 @@
+body{
+    background-color: #222;
+}
+
+.navbar-div{
+    display: flex;
+    position: relative;
+    justify-content: space-around;
+    width: auto;
+    height: auto;
+    /* font-family: "Lucida Console", "Courier New", monospace; */
+}
+.navbar-logo{
+    
+}
+
+.right-navbar{
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    height: auto;
+    min-width: 12em;
+    top: 0.7em;
+}
+
+.navbar-button{
+    border-radius: 30px;
+    background-color: #222;
+    color: rgba(255,255,255,1);
+    border-color: aliceblue;
+}
+.navbar-button:focus{
+    outline: 0;
+}
+.navbar-button:hover{
+    border-color: rgba(255,255,255,1);
+    background-color:rgba(255,255,255,1);
+    color: #222;
+}
