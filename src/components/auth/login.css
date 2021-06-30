@@ -76,6 +76,10 @@
 .options-context{
     color:grey;
 }
+.login-register:hover{
+    text-decoration: underline;
+    text-decoration-color: #7289da;
+}
 
 .login-register{
     color: #7289da;
@@ -84,4 +88,14 @@
 
 .register-link:hover{
     text-decoration: none;
+}
+
+.DemoLogIN:hover{
+    color: #7289da;
+    text-decoration: none;
+    cursor:default;
+}
+
+.error{
+    color:red;
 }

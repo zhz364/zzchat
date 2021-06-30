@@ -8,6 +8,7 @@ import "../auth/login.css"
 function Login(){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState('');
 
     const {getLoggedIn} = useContext(AuthContext);
     const history = useHistory();
@@ -22,8 +23,20 @@ function Login(){
             await getLoggedIn();
             history.push("/")
         }catch(err){
-            console.log({errorMessage: "Wrong username or password"});
+            setErrorMessage('Wrong username or password');
         }
+    }
+    async function demoLogIn(e){
+        // e.preventDefault();
+        const loginData = {
+            username:"zztester",
+            password:"password"
+        }
+            
+        await axios.post("http://localhost:5000/users/login",loginData);
+        await getLoggedIn();
+        history.push("/")
+        
     }
 
     return <div className="login-div">
@@ -37,9 +50,9 @@ function Login(){
         </form></div>
         <div className="other-option-div">
             <div className="options-context">Need an account? <Link className="register-link" to="/register"><span className="login-register">Register</span></Link></div>
-            <div className="options-context">Use the Demo Account</div>
+            <div className="options-context" onClick={demoLogIn}><span className="DemoLogIN">Use the Demo Account</span></div>
         </div>
-        
+        <p className="error" > {errorMessage} </p>
     </div>;
 };
 
