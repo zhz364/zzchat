@@ -1,0 +1,85 @@
+.register-div{
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    width: 35em;
+    height: 28em;
+    top: 45%;
+    right: 35%;
+    transform: translate(0, -50%);
+    padding: 10px 30px 20px 30px;
+    background-color: #36393f;
+    border: 1px solid;
+}
+.title{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    /* align-items: center; */
+    color: white;
+    font-size: 1.5em;
+    font-weight: 1000;
+}
+
+.option{
+    color: grey;
+    font-family: Whitney,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: 200;
+    margin-top: 5%;
+}
+
+.register-input{
+    width: 96%;
+    border-radius: 5px;
+    color: white;
+    background-color: #2e2e2e;
+    padding: 10px;
+}
+
+.register-input::placeholder {
+    color: grey;
+    font-family: Whitney,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: 200;
+}
+
+.register-input-div{
+    margin-top: 2%;
+}
+
+.register-btn{
+    background: #7189da;
+    border-color: #7189da;
+    width: 96%;
+    border-radius: 5px;
+    margin-top: 8%;
+    padding: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.register-btn:hover{
+    -webkit-filter: brightness(80%)
+}
+
+.other-option-div{
+    margin-top: 6%;
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+   
+}
+
+.options-context{
+    color:grey;
+}
+
+.login-register{
+    color: #7289da;
+    text-decoration: none;
+}
+
+.login-link:hover{
+    text-decoration: none;
+}

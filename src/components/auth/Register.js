@@ -1,7 +1,9 @@
 import React, {useState, useContext} from 'react';
 import axios from "axios";
+import {Link} from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import AuthContext from "../../context/AuthContext";
+import "../auth/register.css"
 
 function Register(){
     const [username, setUsername] = useState("");
@@ -26,13 +28,18 @@ function Register(){
         }
     }
 
-    return <div>
-        <h1>Create an account</h1>
-        <form onSubmit={register}>
-            <input type="username" placeholder="Username" onChange={(e) => setUsername(e.target.value)} value={username}></input>
-            <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={password}></input>
-            <button type="submit">Register</button>
+    return <div className="register-div">
+        <h1 className="title">Create an account</h1>
+        <form className="register-form" onSubmit={register}>
+            <div className="option">EMAIL</div>
+            <div className="register-input-div"><input className="register-input" type="username" placeholder="Username" onChange={(e) => setUsername(e.target.value)} value={username}></input></div>
+            <div className="option">PASSWORD</div>
+            <div className="register-input-div"><input className="register-input" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={password}></input></div>
+            <button className="register-btn" type="submit">Continue</button>
         </form>
+        <div className="other-option-div">
+            <div className="options-context">Already an account? <Link className="login-link" to="/login"><span className="login-register">Login</span></Link></div>
+        </div>
     </div>;
 };
 
