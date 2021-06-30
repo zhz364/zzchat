@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import axios from "axios";
 import {Link} from "react-router-dom";
 import AuthContext from '../../context/AuthContext';
@@ -24,6 +24,7 @@ function Login(){
             history.push("/")
         }catch(err){
             setErrorMessage('Wrong username or password');
+            
         }
     }
     async function demoLogIn(e){
@@ -39,9 +40,15 @@ function Login(){
         
     }
 
+    async function clearError(e){
+        if(username || password){
+            setErrorMessage('');
+        }
+    }
+
     return <div className="login-div">
         <h1 className="title">Welcome back!</h1>
-        <div className="login-form"><form onSubmit={login}>
+        <div className="login-form"><form onSubmit={login} onChange={clearError}>
             <div className="option">EMAIL</div>
             <div className="login-input-div"><input className="login-input" type="username" placeholder="Username" onChange={(e) => setUsername(e.target.value)} value={username}></input></div>
             <div className="option">PASSWORD</div>
