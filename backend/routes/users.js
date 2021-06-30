@@ -15,16 +15,16 @@ router.post('/add',async(req,res) => {
         const {username, password }= req.body;
         // Validations
         if(!username || !password){
-            return res.status(400).json("Error: "+ "Please enter all required fields")
+            return res.status(400).json("Please enter all required fields")
         }
 
         if(password.length < 6){
-            return res.status(400).json("Error: "+ "Please enter a password of at least 6 characters")
+            return res.status(400).json("Please enter a password of at least 6 characters")
         }
 
         const existingUser = await User.findOne({username:username})
         if (existingUser){
-            return res.status(400).json("Error: "+ "An account with this username already exists")
+            return res.status(400).json("An account with this username already exists")
         }
 
         // hash the password
@@ -56,20 +56,20 @@ router.route('/login').post(async(req,res) => {
         const {username, password} = req.body;
         // validate
         if(!username || !password){
-            return res.status(400).json("Error: "+ "Please enter all required fields")
+            return res.status(400).json("Please enter all required fields")
         }
 
         if(password.length < 6){
-            return res.status(400).json("Error: "+ "Please enter a password of at least 6 characters")
+            return res.status(400).json("Please enter a password of at least 6 characters")
         }
 
         const existingUser = await User.findOne({username});
         if (!existingUser){
-            return res.status(401).json("Error: "+ "Wrong username or password")
+            return res.status(401).json("Wrong username or password")
         }
         const passwordCheck = await bcrypt.compare(password,existingUser.passwordHash);
         if(!passwordCheck){
-            return res.status(401).json("Error: "+ "Wrong username or password")
+            return res.status(401).json("Wrong username or password")
         }
 
         // sign in token 
