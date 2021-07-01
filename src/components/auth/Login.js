@@ -3,7 +3,7 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import AuthContext from '../../context/AuthContext';
 import { useHistory } from 'react-router-dom';
-import "../auth/login.css"
+import "./login.css"
 
 function Login(){
     const [username, setUsername] = useState("");

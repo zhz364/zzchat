@@ -8,7 +8,7 @@ function Navbar(){
     const { loggedIn } = useContext(AuthContext);
     console.log(loggedIn)
     return <div className="navbar-div">
-        <div className="navbar-logo"><Link to="/"><img src="../../../transparentLogo.png" width="15%" ></img></Link></div>
+        <div className="navbar-logo"><Link to="/"><img className="logo-img" src="../../../transparentLogo.png"></img></Link></div>
         {loggedIn === false && (
                 <div className="right-navbar">
                     <div className="navbar-register"><Link to="/register"><button className="navbar-button">Register</button></Link></div>

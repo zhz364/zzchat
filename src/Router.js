@@ -5,6 +5,7 @@ import Navbar from "./components/layout/Navbar";
 import Login from "./components/auth/Login";
 import Logout from "./components/auth/Logout";
 import AuthContext from "./context/AuthContext";
+import Home from "./components/home/Home";
 
 function Router(){
     const { loggedIn } = useContext(AuthContext);
@@ -13,7 +14,7 @@ function Router(){
         <Navbar />
         <Switch>
             <Route exact path="/">
-                <div>Home</div>
+                <Home/>
             </Route>
             {
                 loggedIn === false && (<>

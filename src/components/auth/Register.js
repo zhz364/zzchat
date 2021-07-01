@@ -3,7 +3,7 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import AuthContext from "../../context/AuthContext";
-import "../auth/register.css"
+import "./register.css"
 
 function Register(){
     const [username, setUsername] = useState("");
